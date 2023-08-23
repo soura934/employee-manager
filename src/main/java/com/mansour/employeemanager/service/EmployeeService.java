@@ -4,6 +4,7 @@ package com.mansour.employeemanager.service;
 import com.mansour.employeemanager.exception.EmployeeException;
 import com.mansour.employeemanager.model.Employee;
 import com.mansour.employeemanager.repo.EmployeeRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,7 @@ public class EmployeeService {
     public Employee findEmployeeById(Long id) {
         return employeeRepo.findEmployeeById(id).orElseThrow(()-> new EmployeeException("employee by id: " + id + " was not found"));
     }
-
+    @Transactional
     public void deleteEmployeeById(Long id) {
         employeeRepo.deleteEmployeeById(id);
     }
